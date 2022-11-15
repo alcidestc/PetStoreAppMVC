@@ -33,6 +33,7 @@ namespace PetStoreApp.Servicios
                 result = JsonConvert.DeserializeObject<List<Pet>>(responseBody);
                 return result;
             }
+            result = null;
             return result;
         }
 
@@ -89,7 +90,8 @@ namespace PetStoreApp.Servicios
             string _ContentType = "application/json";
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(_ContentType));
 
-            var response = await client.GetAsync($"{_url}/{id}");
+            var url = $"{_url}/{id}";
+            var response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
             {
@@ -97,6 +99,7 @@ namespace PetStoreApp.Servicios
                 result = JsonConvert.DeserializeObject<Pet>(responseBody);
                 return result;
             }
+            result = null;
             return result;
         }
 

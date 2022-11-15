@@ -25,6 +25,10 @@ namespace PetStore.Controllers
         {
             var modelo = new PetListViewModel();
             modelo.Pets = await _petServices.FindByStatus(status);
+            if(modelo.Pets == null)
+            {
+                RedirectToAction("NoEncontrado", "Home");
+            }
             modelo.Status = status;
             return View(modelo);
         }

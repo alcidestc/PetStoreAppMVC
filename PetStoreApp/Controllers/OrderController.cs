@@ -78,6 +78,12 @@ namespace PetStoreApp.Controllers
         private async Task<IEnumerable<SelectListItem>> ObtenerPetsServices(Status status)
         {
             var pets = await _petServices.FindByStatus(status);
+            
+            if(pets is null)
+            {
+                RedirectToAction("NoEncontrado", "Home");
+            }
+
             var resultado = pets.Select(x => new SelectListItem(x.Name, x.Id.ToString())).ToList();
             var opcionPorDefecto = new SelectListItem("Seleccione una categoria", "", true);
 
