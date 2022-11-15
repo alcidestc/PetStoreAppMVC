@@ -1,5 +1,5 @@
 # PetStoreAppMVC
-Aplicación de mascotas net core MVC
+Aplicación de mascotas net core MVC 6.0
 
 ## [1.0.0] - 2022-11-15
 
