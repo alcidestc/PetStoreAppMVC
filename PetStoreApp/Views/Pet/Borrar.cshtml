@@ -1,0 +1,12 @@
+﻿@using PetStore.Modelos
+@model Pet
+@{
+    ViewData["Title"] = "Borrar Pet";
+}
+
+<h3 class="mb-3">¿Está seguro de borrar la mascota @Model.Name?</h3>
+<form asp-action="BorrarPet">
+    <input type="hidden" asp-for="Id"/>
+    <button type="submit" class="btn btn-danger">Borrar</button>
+    <a asp-action="Index">Cancelar</a>
+</form>

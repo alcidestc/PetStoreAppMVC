@@ -1,0 +1,47 @@
+﻿@using PetStore.Modelos
+@model PetListViewModel
+
+@{
+    ViewData["Title"] = "Listado de Mascotas";
+}
+
+<h1>Listados de mascotas</h1>
+<a asp-action="Crear" class="btn btn-primary mb-3">Crear nuevo</a>
+
+<div class="mb-3 col-6">
+        <label asp-for="Status" class="form-label">Status</label>
+        <select asp-for="Status" asp-items="Html.GetEnumSelectList<Status>()" class="form-select"></select>
+    </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Controles</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre mascota</th>
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var pet in Model.Pets){
+            <tr>
+                <th>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@pet.Id"><i class="bi-pencil-fill"></i></a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-id="@pet.Id"><i class="bi-trash-fill"></i></a>
+                </th>
+                <td>@pet.Id</td>
+                <td>@pet.Name</td>
+                <td>@pet.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $("#Status").change(function(){
+            const status = $(this).val();
+            location.href = `/pet?status=${status}`;
+        });
+    </script>
+}

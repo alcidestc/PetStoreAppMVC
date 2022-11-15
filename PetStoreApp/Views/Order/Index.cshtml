@@ -1,0 +1,42 @@
+﻿@using PetStore.Modelos
+@model IEnumerable<OrderViewModel>
+
+@{
+    ViewData["Title"] = "Listado de Ordenes";
+}
+
+<h1>Listado de Ordenes</h1>
+<a asp-action="Crear" class="btn btn-primary mb-3">Crear nuevo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Controles</th>
+            <th scope="col">ID</th>
+            <th scope="col">Mascota</th>
+            <th scope="col">Fecha de compra</th>
+            <th scope="col">Cantidad</th>
+
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var order in Model){
+            <tr>
+                <th>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@order.Id"><i class="bi-pencil-fill"></i></a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-id="@order.Id"><i class="bi-trash-fill"></i></a>
+                </th>
+                <td>@order.Id</td>
+                <td>@order.Name</td>
+                <td>@order.ShipDate</td>
+                <td>@order.Quantity</td>
+                <td>@order.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+  
+}

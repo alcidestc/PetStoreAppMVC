@@ -1,0 +1,75 @@
+﻿@using PetStore.Modelos
+@model CrearPetViewModel
+
+@{
+    ViewData["Title"] = "Editar Mascota";
+}
+
+<h1>Editar mascota</h1>
+
+<div asp-validation-summary="ModelOnly" class="test-danger"></div>
+
+<form asp-action="EditarPet">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoriaId" class="form-label"></label>
+        <select asp-for="CategoriaId"  asp-asp-items= asp-items="Model.Categories" class="form-select"></select>
+        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+    </div>
+
+    <div class = "border rounded p-1">
+        <div id="NuevaFila">
+            <input type="hidden" id="total" value="@Model.PhotoUrls.Count()" />
+            <label asp-for="PhotoUrls" class="form-label"></label>
+            @for (var i = 0; i < Model.PhotoUrls.Count(); i++)
+            {
+                <div id="inputRow" class="mb-3 input-group">
+                    <input asp-for="PhotoUrls[i]" class="form-control"/>
+                    <button id="RemoverFilaTags" type="button" class="btn btn-outline-danger">Borrar</button>
+                </div>
+            }
+        </div>
+
+        <button id="AgregarFilaPhotosUrl" type="button" class="btn btn-info">Agregar</button>
+    </div>
+
+   <div class = "border rounded p-1">
+        <div id="NuevaFilaTags">
+            <input type="hidden" id="totalTags" value="@Model.Tags.Count()" />
+            <label asp-for="Tags" class="form-label"></label>
+            @for (var i = 0; i < Model.Tags.Count(); i++)
+            {
+                <div id="inputRowTags" class="mb-3 input-group">
+                    <input type="hidden" asp-for="Tags[i].Id"/>
+                    <input asp-for="Tags[i].Name" class="form-control"/>
+
+                    <button id="RemoverFila" type="button" class="btn btn-outline-danger">Borrar</button>
+                </div>
+            }
+        </div>
+
+        <button id="AgregarFilaTags" type="button" class="btn btn-info">Agregar</button>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label"></label>
+        <select asp-for="Status"  asp-items="Html.GetEnumSelectList<Status>()" class="form-control"></select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+<script src="~/js/pet.js"></script>
+
+}
