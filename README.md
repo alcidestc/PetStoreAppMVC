@@ -11,7 +11,7 @@ Aplicación de mascotas net core MVC 6.0
     - Editar https://localhost:7040/Pet/Editar/{Id}
     - Eliminar https://localhost:7040/Pet/Borrar/{Id}
 - Se agregaron las vistas para ordenes de tienda
-    - Listar https://localhost:7040/Order (No muestra datos por que no se entendió la respuesta del endpoint)
+    - Listar https://localhost:7040/Order (No muestra datos por que el endpoint no retorna correctamente un objeto(s))
     - Crear https://localhost:7040/Order/Crear
     - Editar https://localhost:7040/Order/Editar/{Id}
     - Eliminar https://localhost:7040/Order/Borrar/{Id}
